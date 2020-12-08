@@ -1,5 +1,5 @@
 <template>
-  <div class="max-md m-auto py-10">
+  <div class="max-w-md m-auto py-10">
     <div class="text-red" v-if="error">{{ error }}</div>
     <h3 class="font-mono text-regular text-3xl mb-4">Add a new artist</h3>
 
@@ -71,9 +71,7 @@ export default {
     },
     addArtist () {
       const value = this.newArtist
-      if (!value) {
-        return
-      } else {
+      if (value) {
         this.$http.secured.post('/api/v1/artists', { artist: { name: this.newArtist.name } })
           .then(response => {
             this.artists.push(response.data)
@@ -94,13 +92,9 @@ export default {
     },
     updateArtist (artist) {
       this.editedArtist = ''
-      this.$http.secured.patch(`/api/v1/artists/${artist.id}`, { artist: { title: artist.name } })
+      this.$http.secured.patch(`/api/v1/artists/${artist.id}`, { artist: { name: artist.name } })
         .catch(error => this.setError(error, 'Can not update artist'))
     }
   }
 }
 </script>
-
-<style>
-
-</style>

@@ -18,8 +18,8 @@
         </div>
 
         <div class="mb-6">
-          <label for="passwordConfirmation" class="label">Password confirmation</label>
-          <input type="password" v-model="passwordConfirmation" class="input" id="passwordConfirmation" placeholder="***********">
+          <label for="password_confirmation" class="label">Password confirmation</label>
+          <input type="password" v-model="password_confirmation" class="input" id="password_confirmation" placeholder="***********">
         </div>
 
         <button type="submit" class="font-sans font-bold px-4 rounded cursor-pointer no-underline bg-green hover:bg-green-dark block w-full py-4 text-white items-center justify-center">SIgn Up</button>
@@ -41,7 +41,7 @@ export default {
     return {
       email: '',
       password: '',
-      passwordConfirmation: '',
+      password_confirmation: '',
       error: ''
     }
   },
@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     signup () {
-      this.$http.plain.post('/signup', { email: this.email, password: this.password, passwordConfirmation: this.passwordConfirmation })
+      this.$http.plain.post('/signup', { email: this.email, password: this.password, password_confirmation: this.password_confirmation })
         .then(response => this.signupSuccessful(response))
         .catch(error => this.signupFailed(error))
     },
@@ -68,7 +68,7 @@ export default {
       this.$router.replace('/records')
     },
     signupFailed (error) {
-      this.error = (error.response && error.response.data && error.response.data.error) || 'Something went wrong'
+      this.error = (error.response && error.response.data && error.response.data.error) || 'Something went coucou'
       delete localStorage.csrf
       delete localStorage.signedIn
     },

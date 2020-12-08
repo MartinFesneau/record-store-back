@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost/3000'
+const API_URL = 'http://localhost:3000'
 
 const securedAxiosInstance = axios.create({
   baseURL: API_URL,
@@ -19,7 +19,7 @@ const plainAxiosInstance = axios.create({
 })
 
 securedAxiosInstance.interceptors.request.use(config => {
-  const method = config.method.toUppercase()
+  const method = config.method.toUpperCase()
   if (method !== 'OPTIONS' && method !== 'GET') {
     config.headers = {
       ...config.headers,
