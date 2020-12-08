@@ -68,7 +68,7 @@ export default {
       this.$router.replace('/records')
     },
     signupFailed (error) {
-      this.error = (error.response && error.response.data && error.response.data.error) || 'Something went coucou'
+      this.error = (error.response && error.response.data && error.response.data.error) || 'Something went wrong'
       delete localStorage.csrf
       delete localStorage.signedIn
     },
